@@ -1,10 +1,12 @@
 # Nextcloud S3 to local storage migration script :cloud: :floppy_disk:
 
-At the time of writing this script using S3 based primary storage in Nextcloud does not work very well.
-Officially it is not supported to change the primary storage in Nextcloud. However, it's very well possible and this unofficial script helps you in doing so.
-It will transfer files from *S3* based primary storage to a *local* primary storage.
+At the time of writing this script using S3 based primary storage in [Nextcloud](https://nextcloud.com/) does not work very well.
+Still you might have configured your Nextcloud to use S3 based primary storage as indicated [here](https://docs.nextcloud.com/server/17/admin_manual/configuration_files/primary_storage.html). But what if you want to switch to local primary storage?
 
-:warning: This script was written in a rather quick & dirty way. It may fail and lead to data loss. Use at your own risk!
+Officially it is not supported to change the primary storage in Nextcloud. However, it's very well possible and this unofficial script helps you in doing so.
+It will transfer files from **S3** based primary storage to a **local** primary storage.
+
+:warning: This script was written in a rather quick & dirty way. It may fail and lead to data loss. Use at your own risk! :warning:
 
 ## Links
 
@@ -20,8 +22,8 @@ Just follow the steps below:
 1. Run composer install to obtain some dependencies.
 2. Make sure that the nextcloud cron job is disabled.
 3. Make sure that you local data is sufficiently large.
-4. Setup the three path variables at the top of the [transfer.php] file.
-5. Then just run the [transfer.php] file from the command line. That's it! :checkered_flag:
+4. Setup the three path variables at the top of the [transfer.php](transfer.php) file.
+5. Then just run the [transfer.php](transfer.php) file from the command line. That's it! :checkered_flag:
 
 ## Cleanup
 
@@ -40,4 +42,4 @@ If you find this script useful and you make some modifications please consider m
 
 ## License
 
-This portfolio is open-sourced software licensed under the MIT license. Please see [LICENSE](LICENSE.md) for details.
+This script is open-sourced software licensed under the MIT license. Please see [LICENSE](LICENSE.md) for details.

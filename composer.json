@@ -1,7 +1,7 @@
 {
     "name": "lukasmu/nextcloud-s3-to-disk-migration",
     "type": "project",
-    "description": "Tool for migrating Nextcloud primary storage from S3 to ",
+    "description": "Script for migrating Nextcloud primary storage from S3 to local storage",
     "keywords": [
         "nextcloud",
         "s3",
