@@ -83,7 +83,7 @@ echo "Copying existing data finished\n";
 
 echo "Creating folder structure started...\n";
 
-if ($result = $mysqli->query("SELECT st.id, fc.fileid, fc.path, fc.storage_mtime FROM oc_filecache as fc, oc_storages as st WHERE st.numeric_id = fc.storage AND st.id LIKE 'object::%' AND fc.mimetype = 2")) {
+if ($result = $mysqli->query("SELECT st.id, fc.fileid, fc.path, fc.storage_mtime FROM oc_filecache as fc, oc_storages as st, oc_mimetypes as mt WHERE st.numeric_id = fc.storage AND st.id LIKE 'object::%' AND fc.mimetype = mt.id AND mt.mimetype = 'httpd/unix-directory'")) {
 	$progress_bar = new Manager(0, $result->num_rows);
 	while ($row = $result->fetch_assoc()) {
 		try {
@@ -115,7 +115,7 @@ echo "Copying files started...\n";
 
 $flag = true;
 
-if ($result = $mysqli->query("SELECT st.id, fc.fileid, fc.path, fc.storage_mtime FROM oc_filecache as fc, oc_storages as st WHERE st.numeric_id = fc.storage AND st.id LIKE 'object::%' AND fc.mimetype != 2")) {
+if ($result = $mysqli->query("SELECT st.id, fc.fileid, fc.path, fc.storage_mtime FROM oc_filecache as fc, oc_storages as st, oc_mimetypes as mt  WHERE st.numeric_id = fc.storage AND st.id LIKE 'object::%' AND fc.mimetype = mt.id AND mt.mimetype != 'httpd/unix-directory'")) {
 	$progress_bar = new Manager(0, $result->num_rows);
 	while ($row = $result->fetch_assoc()) {
 		try {
