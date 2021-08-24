@@ -32,7 +32,7 @@ if ($CONFIG['mysql.utf8mb4']) {
 }
 
 // Database backup
-$process = Process::fromShellCommandline('mysqldump --user='.$CONFIG['dbuser'].' --password='.$CONFIG['dbpassword'].' '.$CONFIG['dbname'].' > '.$PATH_BACKUP . DIRECTORY_SEPARATOR . 'backup-'.time().'.sql');
+$process = Process::fromShellCommandline('mysqldump --host='.$CONFIG['dbhost'].' --user='.$CONFIG['dbuser'].' --password='.$CONFIG['dbpassword'].' '.$CONFIG['dbname'].' > '.$PATH_BACKUP . DIRECTORY_SEPARATOR . 'backup-'.time().'.sql');
 $process->run();
 if (!$process->isSuccessful()) {
     throw new ProcessFailedException($process);
@@ -44,11 +44,11 @@ copy($PATH_NEXTCLOUD.'/config/config.php', $PATH_BACKUP.'/config.php');
 // S3 setup
 $s3 = new S3Client([
     'version' => 'latest',
-	'endpoint' => 'https://'.$CONFIG['objectstore']['arguments']['bucket'].'.'.$CONFIG['objectstore']['arguments']['hostname'],
-	'bucket_endpoint' => true,
+    'endpoint' => 'https://'.$CONFIG['objectstore']['arguments']['bucket'].'.'.$CONFIG['objectstore']['arguments']['hostname'],
+    'bucket_endpoint' => true,
     'region'  => $CONFIG['objectstore']['arguments']['region'],
-	'credentials' => [
-		'key'    => $CONFIG['objectstore']['arguments']['key'],
+    'credentials' => [
+        'key' => $CONFIG['objectstore']['arguments']['key'],
         'secret' => $CONFIG['objectstore']['arguments']['secret'],
     ],
 ]);
