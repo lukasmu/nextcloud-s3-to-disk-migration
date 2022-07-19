@@ -161,7 +161,7 @@ echo "Modifying database finished\n";
 echo "Doing final adjustments started...\n";
 
 // Update config file
-$process = new Process(['php', $PATH_NEXTCLOUD . DIRECTORY_SEPARATOR . 'occ', 'config:system:set', 'value="'.$PATH_DATA.'"']);
+$process = new Process(['php', $PATH_NEXTCLOUD . DIRECTORY_SEPARATOR . 'occ', 'config:system:set', 'datadirectory', 'value="'.$PATH_DATA.'"']);
 $process->run();
 if (!$process->isSuccessful()) {
     throw new ProcessFailedException($process);
