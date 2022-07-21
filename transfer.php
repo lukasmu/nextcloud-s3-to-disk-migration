@@ -161,12 +161,15 @@ echo "Modifying database finished\n";
 echo "Doing final adjustments started...\n";
 
 // Update config file
-$process = new Process(['php', $PATH_NEXTCLOUD . DIRECTORY_SEPARATOR . 'occ', 'config:system:set', 'datadirectory', 'value="'.$PATH_DATA.'"']);
+$process = new Process(['php', $PATH_NEXTCLOUD . DIRECTORY_SEPARATOR . 'occ', 'config:system:set', 'datadirectory', '--value="'.$PATH_DATA.'"']);
 $process->run();
 if (!$process->isSuccessful()) {
     throw new ProcessFailedException($process);
 }
-// TODO: Remove S3 stuff from config file
+$process = new Process(['php', $PATH_NEXTCLOUD . DIRECTORY_SEPARATOR . 'occ', 'config:system:delete', 'objectstore']);
+if (!$process->isSuccessful()) {
+    throw new ProcessFailedException($process);
+}
 
 // Running cleanup (should not be necessary but cannot hurt)
 $process = new Process(['php', $PATH_NEXTCLOUD . DIRECTORY_SEPARATOR . 'occ', 'files:cleanup']);
