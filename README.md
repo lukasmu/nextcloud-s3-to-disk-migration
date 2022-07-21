@@ -20,10 +20,10 @@ Related topics on the Nextcloud community are:
 Just follow the steps below:
 
 1. Run composer install to obtain some dependencies.
-2. Make sure that the nextcloud cron job is disabled.
+2. Make sure that the Nextcloud cron job is disabled.
 3. Make sure that you local data is sufficiently large.
 4. Setup the three path variables at the top of the [transfer.php](transfer.php) file.
-5. Then just run the [transfer.php](transfer.php) file from the command line. That's it! :checkered_flag:
+5. Then just run the [transfer.php](transfer.php) file from the command line. Make sure to run the script as the system user that is normally used for running Nextcloud to avoid permission errors and maybe increase the memory limit to avoid nasty errors (e.g. execute ```sudo -u nextclouduser php -d memory_limit=1024M transfer.php```). That's it! :checkered_flag:
 
 ## Cleanup
 
