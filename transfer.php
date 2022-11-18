@@ -167,6 +167,7 @@ if (!$process->isSuccessful()) {
     throw new ProcessFailedException($process);
 }
 $process = new Process(['php', $PATH_NEXTCLOUD . DIRECTORY_SEPARATOR . 'occ', 'config:system:delete', 'objectstore']);
+$process->run();
 if (!$process->isSuccessful()) {
     throw new ProcessFailedException($process);
 }
